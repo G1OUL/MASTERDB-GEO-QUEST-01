@@ -1,0 +1,18 @@
+{
+  "description": "Synthetic fixture containing non-numeric strings in numeric/coordinate fields and null required fields",
+  "fixture_id": "SYNTH_03_MALFORMED_TYPES",
+  "expected_disposition": "QUARANTINE",
+  "expected_exception_code": "ERR_TYPE_MALFORMED",
+  "ac": [
+    {
+      "hex": null,
+      "flight": "ERR01",
+      "lat": "NOT_A_LATITUDE",
+      "lon": 72.850000,
+      "alt_baro": true,
+      "gs": "FAST",
+      "track": null,
+      "seen": 3.0
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "description": "Synthetic fixture missing source endpoint and acquisition provenance metadata",
+  "fixture_id": "SYNTH_02_MISSING_PROVENANCE",
+  "expected_disposition": "QUARANTINE",
+  "expected_exception_code": "ERR_PROV_MISSING",
+  "metadata_override": {
+    "source_url": null,
+    "utc_acquisition_timestamp": null
+  },
+  "ac": [
+    {
+      "hex": "800AA1",
+      "flight": "IGO101",
+      "r": "VT-IFX",
+      "t": "A20N",
+      "squawk": "4301",
+      "category": "A3",
+      "lat": 18.950000,
+      "lon": 72.820000,
+      "alt_baro": 8000,
+      "gs": 260.0,
+      "track": 90.0,
+      "seen": 2.0
+    }
+  ]
+}

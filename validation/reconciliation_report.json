@@ -1,0 +1,227 @@
+{
+  "report_name": "MASTERDB-GEO-QUEST-01 Reconciliation & Integration Evidence Report",
+  "reconciliation_timestamp_utc": "2026-10-13T07:59:13.976621+00:00",
+  "governance_classification": "LOCAL_CANDIDATE_RECONCILIATION",
+  "version_alignment": {
+    "dataset_version": "1.0.0-candidate",
+    "schema_version": "1.0.0",
+    "versions_distinct": true,
+    "status": "PASS"
+  },
+  "count_reconciliation": {
+    "submitted_candidate_records": 19,
+    "expected_governed_records": 19,
+    "raw_input_records": 19,
+    "quarantined_records": 0,
+    "conservation_equation_verified": true,
+    "retrieved_from_masterdb_count": null,
+    "retrieval_evidence_status": "UNAVAILABLE",
+    "status": "PASS"
+  },
+  "field_schema_reconciliation": {
+    "total_canonical_fields": 20,
+    "field_mismatches_count": 0,
+    "field_mismatches": [],
+    "status": "PASS",
+    "field_details": [
+      {
+        "field_name": "aircraft_hex_id",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "aircraft_type_icao",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "altitude_baro_ft",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "integer",
+        "meta_type": "integer",
+        "status": "PASS"
+      },
+      {
+        "field_name": "altitude_geom_ft",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "integer",
+        "meta_type": "integer",
+        "status": "PASS"
+      },
+      {
+        "field_name": "bearing_from_center_deg",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "callsign",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "distance_from_center_nm",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "emitter_category",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "ground_speed_kts",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "is_on_ground",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "boolean",
+        "meta_type": "boolean",
+        "status": "PASS"
+      },
+      {
+        "field_name": "last_seen_seconds",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "latitude",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "longitude",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "position_age_seconds",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "provenance",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "object",
+        "meta_type": "object",
+        "status": "PASS"
+      },
+      {
+        "field_name": "registration",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "signal_rssi_db",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "squawk_code",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "string",
+        "meta_type": "string",
+        "status": "PASS"
+      },
+      {
+        "field_name": "true_track_deg",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "float",
+        "meta_type": "float",
+        "status": "PASS"
+      },
+      {
+        "field_name": "vertical_rate_fpm",
+        "in_registration_payload": true,
+        "in_metadata_dictionary": true,
+        "in_cleaned_records": true,
+        "reg_type": "integer",
+        "meta_type": "integer",
+        "status": "PASS"
+      }
+    ]
+  },
+  "provenance_reconciliation": {
+    "source_endpoint": "https://api.adsb.lol/v2/lat/19.0760/lon/72.8777/dist/100",
+    "dataset_id": "BHIV-GEO-QUEST-01-AIRCRAFT",
+    "data_licence": "Open Data Commons Open Database License (ODbL) v1.0",
+    "lineage_complete": true,
+    "status": "PASS"
+  },
+  "masterdb_integration_boundaries": {
+    "real_integration_evidence_exists": false,
+    "local_simulation_or_dry_run": true,
+    "real_registration_status": "PENDING_AUTHORIZATION",
+    "external_blockers": [
+      "BLOCKER_01: MASTERDB canonical owner write authorization is PENDING governance approval (sign-off required by Geospatial Domain Steward / Kavy, Harsha, Nupur, Rajaryan).",
+      "BLOCKER_02: No external MASTERDB endpoint, API keys, or live message bus integration configured in this repository.",
+      "BLOCKER_03: Official MasterDB entity UUID has not been issued; candidate IDs remain strictly candidate-only."
+    ]
+  },
+  "overall_reconciliation_verdict": "PASS_LOCAL_READY (EXTERNAL_INTEGRATION_PENDING)"
+}

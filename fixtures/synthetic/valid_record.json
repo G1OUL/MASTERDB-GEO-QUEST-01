@@ -1,0 +1,28 @@
+{
+  "description": "Baseline valid aircraft observation fixture conforming to 20-attribute schema",
+  "fixture_id": "SYNTH_01_VALID",
+  "expected_disposition": "ACCEPT",
+  "expected_exception_code": null,
+  "ac": [
+    {
+      "hex": "800B81",
+      "flight": "AIC814",
+      "r": "VT-EXV",
+      "t": "A320",
+      "squawk": "2104",
+      "category": "A3",
+      "lat": 19.088691,
+      "lon": 72.867912,
+      "alt_baro": 12500,
+      "alt_geom": 13100,
+      "gs": 340.5,
+      "track": 182.4,
+      "baro_rate": -1200,
+      "seen": 1.2,
+      "seen_pos": 1.5,
+      "dst": 12.4,
+      "dir": 88.5,
+      "rssi": -14.2
+    }
+  ]
+}

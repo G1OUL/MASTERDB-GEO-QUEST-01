@@ -1,0 +1,32 @@
+{
+  "description": "Synthetic batch with duplicate aircraft hex identifiers within the same observation set",
+  "fixture_id": "SYNTH_04_DUPLICATE_IDENTIFIERS",
+  "expected_disposition": "QUARANTINE",
+  "expected_exception_code": "ERR_ID_DUPLICATE",
+  "ac": [
+    {
+      "hex": "800CC3",
+      "flight": "SEJ201",
+      "r": "VT-SZA",
+      "t": "B738",
+      "lat": 19.100000,
+      "lon": 72.880000,
+      "alt_baro": 15000,
+      "gs": 380.0,
+      "track": 270.0,
+      "seen": 1.0
+    },
+    {
+      "hex": "800CC3",
+      "flight": "SEJ201_DUP",
+      "r": "VT-SZA",
+      "t": "B738",
+      "lat": 19.120000,
+      "lon": 72.890000,
+      "alt_baro": 15200,
+      "gs": 385.0,
+      "track": 272.0,
+      "seen": 1.5
+    }
+  ]
+}

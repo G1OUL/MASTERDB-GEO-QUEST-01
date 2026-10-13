@@ -1,0 +1,35 @@
+{
+  "description": "Synthetic fixture with aerodynamically and physically inconsistent aviation measurements",
+  "fixture_id": "SYNTH_07_INCONSISTENT_MEASUREMENTS",
+  "expected_disposition": "QUARANTINE",
+  "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+  "ac": [
+    {
+      "hex": "800FF6",
+      "flight": "INCON1",
+      "r": "VT-INC",
+      "t": "B738",
+      "lat": 19.080000,
+      "lon": 72.870000,
+      "alt_baro": "ground",
+      "gs": 485.0,
+      "track": 95.0,
+      "seen": 2.0,
+      "anomaly": "surface_aircraft_at_jet_cruising_speed"
+    },
+    {
+      "hex": "800999",
+      "flight": "INCON2",
+      "r": "VT-PHY",
+      "t": "A321",
+      "lat": 19.150000,
+      "lon": 72.900000,
+      "alt_baro": 28000,
+      "gs": 390.0,
+      "track": 415.5,
+      "baro_rate": 35000,
+      "seen": 1.5,
+      "anomaly": "heading_out_of_range_and_hypersonic_climb_rate"
+    }
+  ]
+}

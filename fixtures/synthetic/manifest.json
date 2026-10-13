@@ -1,0 +1,81 @@
+{
+  "manifest_version": "1.0.0",
+  "generated_at_utc": "2026-10-13T12:00:00Z",
+  "purpose": "Comprehensive synthetic fixture suite for negative and boundary testing of the BHIV MasterDB aircraft data pipeline",
+  "schema_version": "1.0.0",
+  "fixtures": [
+    {
+      "fixture_id": "SYNTH_01_VALID",
+      "file_name": "valid_record.json",
+      "description": "Baseline valid aircraft observation conforming to all schema, coordinate, type, and kinetic constraints",
+      "expected_disposition": "ACCEPT",
+      "expected_exception_code": null,
+      "target_rules": [
+        "RULE_PROV_01",
+        "RULE_TYPE_01",
+        "RULE_TYPE_02",
+        "RULE_ID_01",
+        "RULE_SCHEMA_01",
+        "RULE_TIME_01",
+        "RULE_TIME_02",
+        "RULE_PHYS_01",
+        "RULE_PHYS_02"
+      ],
+      "rationale": "Must pass all quality gates and be normalized into the cleaned dataset without quarantine."
+    },
+    {
+      "fixture_id": "SYNTH_02_MISSING_PROVENANCE",
+      "file_name": "missing_provenance.json",
+      "description": "Observation record lacking upstream source URL and acquisition metadata",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_PROV_MISSING",
+      "target_rules": ["RULE_PROV_01"],
+      "rationale": "Governance boundary: Unverified or anonymous feeds without source endpoint and timestamp must be quarantined."
+    },
+    {
+      "fixture_id": "SYNTH_03_MALFORMED_TYPES",
+      "file_name": "malformed_types.json",
+      "description": "Payload containing string coordinate values and null required primary identifier",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_TYPE_MALFORMED",
+      "target_rules": ["RULE_TYPE_01", "RULE_TYPE_02"],
+      "rationale": "Data contract enforcement: Non-numeric coordinates and missing primary keys cannot be spatialized."
+    },
+    {
+      "fixture_id": "SYNTH_04_DUPLICATE_IDENTIFIERS",
+      "file_name": "duplicate_identifiers.json",
+      "description": "Batch containing duplicate ICAO transponder hex addresses",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_ID_DUPLICATE",
+      "target_rules": ["RULE_ID_01"],
+      "rationale": "MasterDB primary key collision: Multiple conflicting observations for the same hex ID in a discrete snapshot."
+    },
+    {
+      "fixture_id": "SYNTH_05_SCHEMA_MISMATCH",
+      "file_name": "schema_mismatch.json",
+      "description": "Record missing mandatory geospatial coordinates and transponder identifiers",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_SCHEMA_MISMATCH",
+      "target_rules": ["RULE_SCHEMA_01"],
+      "rationale": "Schema non-conformance: Records without minimum spatial state vector cannot enter governed dataset."
+    },
+    {
+      "fixture_id": "SYNTH_06_STALE_FUTURE_TIMESTAMPS",
+      "file_name": "stale_future_timestamps.json",
+      "description": "Observations with sensor latencies > 3600s or negative latencies (clock drift anomaly)",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_TIME_ANOMALY",
+      "target_rules": ["RULE_TIME_01", "RULE_TIME_02"],
+      "rationale": "Temporal integrity: Stale telemetry risks stale airspace awareness; negative latency violates causality."
+    },
+    {
+      "fixture_id": "SYNTH_07_INCONSISTENT_MEASUREMENTS",
+      "file_name": "inconsistent_measurements.json",
+      "description": "Surface aircraft cruising at jet speed (485 kts) and heading > 360 degrees with supersonic climb rate",
+      "expected_disposition": "QUARANTINE",
+      "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+      "target_rules": ["RULE_PHYS_01", "RULE_PHYS_02"],
+      "rationale": "Aviation domain logic: Sensor readings that violate physical flight kinematics indicate corrupted transponder data."
+    }
+  ]
+}

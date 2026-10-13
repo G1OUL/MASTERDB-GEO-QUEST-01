@@ -1,0 +1,13 @@
+{
+  "description": "Synthetic fixture missing mandatory schema fields (missing coordinates and transponder hex)",
+  "fixture_id": "SYNTH_05_SCHEMA_MISMATCH",
+  "expected_disposition": "QUARANTINE",
+  "expected_exception_code": "ERR_SCHEMA_MISMATCH",
+  "ac": [
+    {
+      "flight": "GHOST1",
+      "r": "VT-NON",
+      "comment": "Completely missing hex and geographic coordinates"
+    }
+  ]
+}

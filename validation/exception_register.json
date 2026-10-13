@@ -1,0 +1,98 @@
+{
+  "register_name": "BHIV vNEXT MASTERDB-GEO-QUEST-01 Exception & Diagnostic Register",
+  "version": "1.0.0",
+  "last_updated_utc": "2026-10-13T12:00:00Z",
+  "policy": "Deterministic quarantine routing with zero silent data loss. Raw source assets remain immutable.",
+  "exception_codes": [
+    {
+      "code": "ERR_PROV_MISSING",
+      "rule_id": "RULE_PROV_01",
+      "name": "Missing Ingestion Provenance",
+      "severity": "CRITICAL",
+      "default_disposition": "QUARANTINE",
+      "description": "Record or batch lacks upstream source URL, acquisition timestamp, or feeder lineage metadata.",
+      "remediation_workflow": "Verify acquisition wrapper passes valid metadata. Ingestion feeds without origin verification cannot enter governed storage."
+    },
+    {
+      "code": "ERR_REQUIRED_NULL",
+      "rule_id": "RULE_TYPE_01",
+      "name": "Null Required Identifier or Field",
+      "severity": "CRITICAL",
+      "default_disposition": "QUARANTINE",
+      "description": "Mandatory non-nullable field (aircraft_hex_id, latitude, longitude) is null, empty, or absent.",
+      "remediation_workflow": "Inspect feeder message decoder. Transponder frames lacking hex ID cannot be tracked or spatialized."
+    },
+    {
+      "code": "ERR_TYPE_MALFORMED",
+      "rule_id": "RULE_TYPE_02",
+      "name": "Malformed Data Type or Parse Error",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Field value cannot be parsed or coerced to declared schema data type (e.g., non-numeric string in coordinate float).",
+      "remediation_workflow": "Sanitize upstream string serialization; quarantine invalid records to protect downstream spatial geometry engines."
+    },
+    {
+      "code": "ERR_ID_DUPLICATE",
+      "rule_id": "RULE_ID_01",
+      "name": "Duplicate Aircraft Hex Identifier In Batch",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Multiple observation records share the same 24-bit ICAO aircraft hex address within a single snapshot.",
+      "remediation_workflow": "Apply tie-break by latest timestamp or route second instance to quarantine for sensor correlation audit."
+    },
+    {
+      "code": "ERR_SCHEMA_MISMATCH",
+      "rule_id": "RULE_SCHEMA_01",
+      "name": "Schema Non-Conformance / Missing Core Fields",
+      "severity": "CRITICAL",
+      "default_disposition": "QUARANTINE",
+      "description": "Record is not a valid JSON dictionary or lacks the minimum required spatial state vector structure.",
+      "remediation_workflow": "Review upstream payload schema changes and version contract compatibility."
+    },
+    {
+      "code": "ERR_TIME_FUTURE",
+      "rule_id": "RULE_TIME_01",
+      "name": "Negative Latency / Future Timestamp Anomaly",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Sensor latency ('seen', 'seen_pos') is negative or observation timestamp is ahead of the reference clock.",
+      "remediation_workflow": "Investigate feeder receiver NTP clock synchronization and clock drift."
+    },
+    {
+      "code": "ERR_TIME_STALE",
+      "rule_id": "RULE_TIME_02",
+      "name": "Stale Observation Age Exceeded",
+      "severity": "WARNING",
+      "default_disposition": "QUARANTINE",
+      "description": "Observation latency exceeds maximum real-time operational shelf-life threshold (default > 3600 seconds).",
+      "remediation_workflow": "Archive to historical cold storage; exclude from active near-real-time surveillance catalog."
+    },
+    {
+      "code": "ERR_PHYS_OUT_OF_BOUNDS",
+      "rule_id": "RULE_PHYS_01",
+      "name": "Kinematic Value Out of Physical Aviation Envelope",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Ground speed, track angle, or altitude outside realistic physical bounds (e.g., track > 360 deg or speed > 1500 kts).",
+      "remediation_workflow": "Flag sensor bit-flip or corrupted decode. Exclude from trajectory smoothing."
+    },
+    {
+      "code": "ERR_PHYS_INCONSISTENT",
+      "rule_id": "RULE_PHYS_02",
+      "name": "Inconsistent Cross-Field Physical Measurements",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Contradictory telemetry fields, such as surface aircraft (on_ground=True) reporting jet cruise speed (>120 kts) or supersonic climb rates.",
+      "remediation_workflow": "Quarantine for cross-sensor sensor validation; prevent corrupted states from triggering false collision alerts."
+    },
+    {
+      "code": "ERR_CONSERVATION_VIOLATION",
+      "rule_id": "RULE_CONS_01",
+      "name": "Record Conservation Accounting Mismatch",
+      "severity": "CRITICAL",
+      "default_disposition": "REJECT",
+      "description": "Total raw input count does not equal sum of accepted cleaned records plus quarantined records.",
+      "remediation_workflow": "Pipeline fatal stop: indicates memory leak, silent drop, or unhandled exception during processing."
+    }
+  ]
+}

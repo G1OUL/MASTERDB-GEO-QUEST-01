@@ -1,0 +1,141 @@
+{
+  "report_name": "BHIV vNEXT MASTERDB-GEO-QUEST-01 Synthetic Fixture Profiling Report",
+  "dataset_scope": "SYNTHETIC_TEST_FIXTURES (SEPARATE FROM REAL AIRCRAFT DATA)",
+  "profiling_utc": "2026-10-13T07:59:12.239231+00:00",
+  "fixtures_overview": {
+    "total_fixtures": 7,
+    "total_records": 10,
+    "fixture_breakdown": [
+      {
+        "fixture_id": "SYNTH_01_VALID",
+        "file_name": "valid_record.json",
+        "description": "Baseline valid aircraft observation conforming to all schema, coordinate, type, and kinetic constraints",
+        "record_count": 1,
+        "expected_disposition": "ACCEPT",
+        "expected_exception_code": null,
+        "provenance_present": true
+      },
+      {
+        "fixture_id": "SYNTH_02_MISSING_PROVENANCE",
+        "file_name": "missing_provenance.json",
+        "description": "Observation record lacking upstream source URL and acquisition metadata",
+        "record_count": 1,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_PROV_MISSING",
+        "provenance_present": false
+      },
+      {
+        "fixture_id": "SYNTH_03_MALFORMED_TYPES",
+        "file_name": "malformed_types.json",
+        "description": "Payload containing string coordinate values and null required primary identifier",
+        "record_count": 1,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_TYPE_MALFORMED",
+        "provenance_present": true
+      },
+      {
+        "fixture_id": "SYNTH_04_DUPLICATE_IDENTIFIERS",
+        "file_name": "duplicate_identifiers.json",
+        "description": "Batch containing duplicate ICAO transponder hex addresses",
+        "record_count": 2,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_ID_DUPLICATE",
+        "provenance_present": true
+      },
+      {
+        "fixture_id": "SYNTH_05_SCHEMA_MISMATCH",
+        "file_name": "schema_mismatch.json",
+        "description": "Record missing mandatory geospatial coordinates and transponder identifiers",
+        "record_count": 1,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_SCHEMA_MISMATCH",
+        "provenance_present": true
+      },
+      {
+        "fixture_id": "SYNTH_06_STALE_FUTURE_TIMESTAMPS",
+        "file_name": "stale_future_timestamps.json",
+        "description": "Observations with sensor latencies > 3600s or negative latencies (clock drift anomaly)",
+        "record_count": 2,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_TIME_ANOMALY",
+        "provenance_present": true
+      },
+      {
+        "fixture_id": "SYNTH_07_INCONSISTENT_MEASUREMENTS",
+        "file_name": "inconsistent_measurements.json",
+        "description": "Surface aircraft cruising at jet speed (485 kts) and heading > 360 degrees with supersonic climb rate",
+        "record_count": 2,
+        "expected_disposition": "QUARANTINE",
+        "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+        "provenance_present": true
+      }
+    ]
+  },
+  "identifier_metrics": {
+    "total_identifiers_present": 8,
+    "unique_identifiers": 7,
+    "duplicate_identifier_count": 1,
+    "duplicate_identifiers": {
+      "800CC3": 2
+    }
+  },
+  "null_value_analysis": {
+    "total_records": 10,
+    "null_counts_by_field": {
+      "alt_geom": 9,
+      "baro_rate": 8,
+      "seen_pos": 7,
+      "hex": 2,
+      "r": 1,
+      "t": 2,
+      "squawk": 8,
+      "category": 8,
+      "track": 2,
+      "lat": 1,
+      "lon": 1,
+      "alt_baro": 1,
+      "gs": 1,
+      "seen": 1
+    }
+  },
+  "invalid_value_analysis": {
+    "total_anomalies_detected": 7,
+    "anomalies_by_category": {
+      "null_or_empty_hex": 2,
+      "non_numeric_latitude": 1,
+      "non_numeric_speed": 1,
+      "stale_sensor_age": 1,
+      "negative_sensor_latency": 1,
+      "heading_out_of_bounds": 1
+    }
+  },
+  "kinematic_distributions": {
+    "altitudes_ft": {
+      "count": 9,
+      "min": 0,
+      "max": 31000.0,
+      "surface_aircraft_count": 1
+    },
+    "ground_speeds_kts": {
+      "count": 8,
+      "min": 260.0,
+      "max": 485.0
+    },
+    "headings_deg": {
+      "count": 7,
+      "min": 90.0,
+      "max": 272.0
+    },
+    "coordinates_wgs84": {
+      "latitude_min": 18.95,
+      "latitude_max": 19.15,
+      "longitude_min": 72.8,
+      "longitude_max": 72.9
+    }
+  },
+  "provenance_completeness": {
+    "complete_records": 9,
+    "missing_provenance_records": 1,
+    "provenance_completeness_rate_pct": 90.0
+  }
+}
