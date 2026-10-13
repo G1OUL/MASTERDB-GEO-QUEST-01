@@ -2,7 +2,7 @@
   "description": "Synthetic fixture with aerodynamically and physically inconsistent aviation measurements",
   "fixture_id": "SYNTH_07_INCONSISTENT_MEASUREMENTS",
   "expected_disposition": "QUARANTINE",
-  "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+  "expected_exception_code": "ERR_PHYS_INCONSISTENT / ERR_PHYS_OUT_OF_BOUNDS",
   "ac": [
     {
       "hex": "800FF6",

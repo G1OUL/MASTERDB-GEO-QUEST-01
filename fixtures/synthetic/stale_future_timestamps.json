@@ -2,7 +2,7 @@
   "description": "Synthetic fixture containing stale latency (> 1 hour old) and negative sensor latency (future timestamp anomaly)",
   "fixture_id": "SYNTH_06_STALE_FUTURE_TIMESTAMPS",
   "expected_disposition": "QUARANTINE",
-  "expected_exception_code": "ERR_TIME_ANOMALY",
+  "expected_exception_code": "ERR_TIME_STALE / ERR_TIME_FUTURE",
   "ac": [
     {
       "hex": "800DD4",

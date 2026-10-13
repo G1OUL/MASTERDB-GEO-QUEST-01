@@ -64,7 +64,7 @@
       "file_name": "stale_future_timestamps.json",
       "description": "Observations with sensor latencies > 3600s or negative latencies (clock drift anomaly)",
       "expected_disposition": "QUARANTINE",
-      "expected_exception_code": "ERR_TIME_ANOMALY",
+      "expected_exception_code": "ERR_TIME_STALE / ERR_TIME_FUTURE",
       "target_rules": ["RULE_TIME_01", "RULE_TIME_02"],
       "rationale": "Temporal integrity: Stale telemetry risks stale airspace awareness; negative latency violates causality."
     },
@@ -73,7 +73,7 @@
       "file_name": "inconsistent_measurements.json",
       "description": "Surface aircraft cruising at jet speed (485 kts) and heading > 360 degrees with supersonic climb rate",
       "expected_disposition": "QUARANTINE",
-      "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+      "expected_exception_code": "ERR_PHYS_INCONSISTENT / ERR_PHYS_OUT_OF_BOUNDS",
       "target_rules": ["RULE_PHYS_01", "RULE_PHYS_02"],
       "rationale": "Aviation domain logic: Sensor readings that violate physical flight kinematics indicate corrupted transponder data."
     }

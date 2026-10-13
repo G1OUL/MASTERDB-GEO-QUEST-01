@@ -68,6 +68,15 @@
       "remediation_workflow": "Archive to historical cold storage; exclude from active near-real-time surveillance catalog."
     },
     {
+      "code": "ERR_TIME_ANOMALY",
+      "rule_id": "RULE_TIME_01",
+      "name": "General Temporal / Clock Anomaly",
+      "severity": "ERROR",
+      "default_disposition": "QUARANTINE",
+      "description": "Sensor latency or timestamp anomaly (umbrella category covering negative sensor latencies and stale thresholds).",
+      "remediation_workflow": "Inspect feeder receiver NTP clock synchronization and latency telemetry."
+    },
+    {
       "code": "ERR_PHYS_OUT_OF_BOUNDS",
       "rule_id": "RULE_PHYS_01",
       "name": "Kinematic Value Out of Physical Aviation Envelope",

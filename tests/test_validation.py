@@ -267,3 +267,7 @@ def test_reconciliation_contract():
     assert report["count_reconciliation"]["conservation_equation_verified"] is True
     assert report["field_schema_reconciliation"]["field_mismatches_count"] == 0
     assert report["masterdb_integration_boundaries"]["real_integration_evidence_exists"] is False
+
+if __name__ == "__main__":
+    import pytest
+    sys.exit(pytest.main(["-v", __file__]))

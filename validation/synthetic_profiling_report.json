@@ -1,7 +1,7 @@
 {
   "report_name": "BHIV vNEXT MASTERDB-GEO-QUEST-01 Synthetic Fixture Profiling Report",
   "dataset_scope": "SYNTHETIC_TEST_FIXTURES (SEPARATE FROM REAL AIRCRAFT DATA)",
-  "profiling_utc": "2026-10-13T07:59:12.239231+00:00",
+  "profiling_utc": "2026-10-13T10:06:26.822440+00:00",
   "fixtures_overview": {
     "total_fixtures": 7,
     "total_records": 10,
@@ -57,7 +57,7 @@
         "description": "Observations with sensor latencies > 3600s or negative latencies (clock drift anomaly)",
         "record_count": 2,
         "expected_disposition": "QUARANTINE",
-        "expected_exception_code": "ERR_TIME_ANOMALY",
+        "expected_exception_code": "ERR_TIME_STALE / ERR_TIME_FUTURE",
         "provenance_present": true
       },
       {
@@ -66,7 +66,7 @@
         "description": "Surface aircraft cruising at jet speed (485 kts) and heading > 360 degrees with supersonic climb rate",
         "record_count": 2,
         "expected_disposition": "QUARANTINE",
-        "expected_exception_code": "ERR_PHYS_INCONSISTENT",
+        "expected_exception_code": "ERR_PHYS_INCONSISTENT / ERR_PHYS_OUT_OF_BOUNDS",
         "provenance_present": true
       }
     ]
