@@ -182,8 +182,7 @@ def test_warning_vs_hard_failure_disposition():
     assert meta_conserv["disposition"] == "REJECT"
 
 def test_conservation_rule_synthetic():
-    """RULE_CONS_01: Verify conservation law (raw = accepted + quarantined) across all synthetic fixtures."""
-    all_raw = []
+    """RULE_CONS_01: Verify conservation law across all synthetic fixtures (per-fixture and combined batch)."""
     fixture_files = [
         "valid_record.json",
         "missing_provenance.json",
@@ -193,6 +192,32 @@ def test_conservation_rule_synthetic():
         "stale_future_timestamps.json",
         "inconsistent_measurements.json"
     ]
+
+    # Part A: Per-fixture evaluation against documented expected counts (2 accepted, 8 quarantined)
+    per_fixture_acc = 0
+    per_fixture_quar = 0
+    for fn in fixture_files:
+        fix = load_fixture(fn)
+        prov = fix.get("metadata_override")
+        if prov is None:
+            prov = {"source_url": "https://api.adsb.lol/v2/test", "utc_acquisition_timestamp": "2026-10-13T12:00:00Z"}
+        acc_i, quar_i, summ_i = validator_engine.validate_and_process_batch(
+            fix["ac"],
+            provenance_meta=prov,
+            ref_time_utc="2026-10-13T12:00:00Z",
+            source_fixture_name=fn
+        )
+        assert summ_i["conservation_verified"] is True
+        assert len(fix["ac"]) == len(acc_i) + len(quar_i)
+        per_fixture_acc += len(acc_i)
+        per_fixture_quar += len(quar_i)
+
+    assert per_fixture_acc == 2  # Matches documented fixture matrix (valid_record: 1, duplicate: 1)
+    assert per_fixture_quar == 8  # Matches documented fixture matrix (sum of quarantined)
+    assert per_fixture_acc + per_fixture_quar == 10
+
+    # Part B: Combined batch evaluation under uniform valid batch provenance (3 accepted, 7 quarantined)
+    all_raw = []
     for fn in fixture_files:
         fix = load_fixture(fn)
         all_raw.extend(fix["ac"])
@@ -209,9 +234,12 @@ def test_conservation_rule_synthetic():
     )
 
     total_raw = len(all_raw)
+    assert total_raw == 10
     assert summ["conservation_verified"] is True
     assert total_raw == len(acc) + len(quar)
-    assert len(quar) > 0
+    # Under uniform valid batch provenance, SYNTH_02's valid telemetry is accepted, yielding exactly 3 accepted and 7 quarantined:
+    assert len(acc) == 3
+    assert len(quar) == 7
 
 def test_conservation_enforcement_negative():
     """RULE_CONS_01: Negative test verifying that count imbalance triggers ERR_CONSERVATION_VIOLATION."""

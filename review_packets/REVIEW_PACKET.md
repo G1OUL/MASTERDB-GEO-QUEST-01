@@ -79,7 +79,8 @@ Implemented in [`scripts/validator_engine.py`](file:///c:/Users/Microsoft/week/M
 $$\text{Raw Input Records} = \text{Accepted Records} + \text{Quarantined Records}$$
 
 *   **Live Real Capture:** $19\text{ Raw} = 19\text{ Accepted} + 0\text{ Quarantined}$ ($\Delta = 0$, Verified).
-*   **Synthetic Test Suite:** $10\text{ Raw} = 2\text{ Accepted} + 8\text{ Quarantined}$ ($\Delta = 0$, Verified).
+*   **Synthetic Test Suite (Per-Fixture Contract Validation):** $10\text{ Raw} = 2\text{ Accepted} + 8\text{ Quarantined}$ ($\Delta = 0$, Verified across isolated fixtures where `SYNTH_02` evaluates with null provenance override).
+*   **Synthetic Test Suite (Combined-Batch Concatenation Validation):** $10\text{ Raw} = 3\text{ Accepted} + 7\text{ Quarantined}$ ($\Delta = 0$, Verified in `test_conservation_rule_synthetic` Part B where all 10 records are processed in a single batch under valid batch provenance headers, satisfying `SYNTH_02`'s flight telemetry).
 *   **Negative Conservation Test (`test_conservation_enforcement_negative`):** Deliberately imbalanced counts (e.g. 20 raw vs 12 accepted + 7 quarantined, discrepancy = 1) evaluate to `conservation_verified == False` and trigger `ERR_CONSERVATION_VIOLATION` with `REJECT` disposition.
 
 ---

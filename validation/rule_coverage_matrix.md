@@ -36,3 +36,9 @@
 | `SYNTH_06_STALE_FUTURE_TIMESTAMPS` | `stale_future_timestamps.json` | 2 | 0 | 2 | `ERR_TIME_STALE`, `ERR_TIME_FUTURE` | **VERIFIED** |
 | `SYNTH_07_INCONSISTENT_MEASUREMENTS` | `inconsistent_measurements.json` | 2 | 0 | 2 | `ERR_PHYS_INCONSISTENT`, `ERR_PHYS_OUT_OF_BOUNDS` | **VERIFIED** |
 | **LIVE REAL CAPTURE** | `raw/aircraft_raw.json` | 19 | 19 | 0 | None (`PASS`) | **VERIFIED** |
+| **SYNTHETIC SUITE (PER-FIXTURE)** | `fixtures/synthetic/` | 10 | 2 | 8 | Evaluated per fixture contract | **VERIFIED** |
+| **SYNTHETIC SUITE (COMBINED BATCH)** | `combined_synthetic` | 10 | 3 | 7 | Single batch with valid provenance | **VERIFIED** |
+
+> **Conservation Accounting Distinction**:
+> - **Per-Fixture Contract Validation**: Summing isolated fixture runs yields $10\text{ Raw} = 2\text{ Accepted} + 8\text{ Quarantined}$ ($\Delta = 0$), because `SYNTH_02_MISSING_PROVENANCE` executes with its isolated `metadata_override` lacking provenance headers.
+> - **Combined-Batch Concatenation Validation**: When all 10 synthetic records are processed in a single batch under uniform valid batch provenance headers (in `test_conservation_rule_synthetic` Part B), `SYNTH_02`'s valid aircraft telemetry is accepted, yielding $10\text{ Raw} = 3\text{ Accepted} + 7\text{ Quarantined}$ ($\Delta = 0$, conservation law strictly preserved).
