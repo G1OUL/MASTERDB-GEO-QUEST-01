@@ -30,7 +30,7 @@
         "description": "Payload containing string coordinate values and null required primary identifier",
         "record_count": 1,
         "expected_disposition": "QUARANTINE",
-        "expected_exception_code": "ERR_TYPE_MALFORMED",
+        "expected_exception_code": "ERR_TYPE_MALFORMED / ERR_REQUIRED_NULL",
         "provenance_present": true
       },
       {
@@ -48,7 +48,7 @@
         "description": "Record missing mandatory geospatial coordinates and transponder identifiers",
         "record_count": 1,
         "expected_disposition": "QUARANTINE",
-        "expected_exception_code": "ERR_SCHEMA_MISMATCH",
+        "expected_exception_code": "ERR_SCHEMA_MISMATCH / ERR_REQUIRED_NULL",
         "provenance_present": true
       },
       {

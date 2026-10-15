@@ -2,7 +2,7 @@
   "description": "Synthetic fixture containing non-numeric strings in numeric/coordinate fields and null required fields",
   "fixture_id": "SYNTH_03_MALFORMED_TYPES",
   "expected_disposition": "QUARANTINE",
-  "expected_exception_code": "ERR_TYPE_MALFORMED",
+  "expected_exception_code": "ERR_TYPE_MALFORMED / ERR_REQUIRED_NULL",
   "ac": [
     {
       "hex": null,

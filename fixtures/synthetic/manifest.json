@@ -37,7 +37,7 @@
       "file_name": "malformed_types.json",
       "description": "Payload containing string coordinate values and null required primary identifier",
       "expected_disposition": "QUARANTINE",
-      "expected_exception_code": "ERR_TYPE_MALFORMED",
+      "expected_exception_code": "ERR_TYPE_MALFORMED / ERR_REQUIRED_NULL",
       "target_rules": ["RULE_TYPE_01", "RULE_TYPE_02"],
       "rationale": "Data contract enforcement: Non-numeric coordinates and missing primary keys cannot be spatialized."
     },
@@ -55,8 +55,8 @@
       "file_name": "schema_mismatch.json",
       "description": "Record missing mandatory geospatial coordinates and transponder identifiers",
       "expected_disposition": "QUARANTINE",
-      "expected_exception_code": "ERR_SCHEMA_MISMATCH",
-      "target_rules": ["RULE_SCHEMA_01"],
+      "expected_exception_code": "ERR_SCHEMA_MISMATCH / ERR_REQUIRED_NULL",
+      "target_rules": ["RULE_SCHEMA_01", "RULE_TYPE_01"],
       "rationale": "Schema non-conformance: Records without minimum spatial state vector cannot enter governed dataset."
     },
     {
